@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <h1>Counter</h1>
+    <p>Count: <span id="count">0</span></p>
+    <button id="startStopButton">Start</button>
+    <button id="incrementButton">Increment</button>
+    <button id="decrementButton">Decrement</button>
+
+    <script>
+        class Counter {
+            constructor() {
+                this.count = 0;
+                this.interval = null;
+                this.isAutoMode = false;
+                this.startStopButton = document.getElementById("startStopButton");
+                this.incrementButton = document.getElementById("incrementButton");
+                this.decrementButton = document.getElementById("decrementButton");
+                this.countDisplay = document.getElementById("count");
+
+                this.startStopButton.addEventListener("click", () => this.toggleCounter());
+                this.incrementButton.addEventListener("click", () => this.increment());
+                this.decrementButton.addEventListener("click", () => this.decrement());
+            }
+
+            toggleCounter() {
+                if (this.isAutoMode) {
+                    clearInterval(this.interval);
+                    this.startStopButton.textContent = "Start";
+                } else {
+                    this.interval = setInterval(() => this.increment(), 1000);
+                    this.startStopButton.textContent = "Stop";
+                }
+                this.isAutoMode = !this.isAutoMode;
+            }
+
+            increment() {
+                this.count++;
+                this.countDisplay.textContent = this.count;
+                if (!this.isAutoMode) {
+                    clearInterval(this.interval);
+                }
+            }
+
+            decrement() {
+                this.count--;
+                this.countDisplay.textContent = this.count;
+                if (!this.isAutoMode) {
+                    clearInterval(this.interval);
+                }
+            }
+        }
+
+        const counter = new Counter();
+    </script>
+</body>
+</html>

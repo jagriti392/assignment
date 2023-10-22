@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Example</title>
+</head>
+<body>
+  <div id="myDiv">This is a div element.</div>
+  <button id="myButton">Click Me</button>
+
+  <script>
+    // Accessing an element by its ID
+    var divElement = document.getElementById("myDiv");
+    var buttonElement = document.getElementById("myButton");
+
+    // Modifying the content
+    divElement.innerHTML = "This div has been modified.";
+
+    // Adding an event listener to the button
+    buttonElement.addEventListener("click", function() {
+      divElement.style.color = "blue";
+      divElement.style.color = "green";
+    });
+  </script>
+</body>
+</html>
+ 

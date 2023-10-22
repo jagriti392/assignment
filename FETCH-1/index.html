@@ -1,0 +1,72 @@
+// index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #main {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+      }
+
+      .product-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #cecece;
+        padding: 10px;
+      }
+
+      .product-card img {
+        height: 200px;
+        width: 200px;
+      }
+    </style>
+    <title>E Commerce</title>
+  </head>
+  <body>
+    <div id="main"></div>
+  </body>
+  <script>
+    // index.js
+let main = document.getElementById("main")
+let URL = `https://fakestoreapi.com/products`
+
+const init = async () => {
+  try {
+    let res = await fetch(URL)
+    let data = await res.json()
+    displayData(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+init()
+
+const displayData = (data) => {
+  data.forEach(function (product) {
+    let productCard = document.createElement("div")
+    productCard.className = "product-card"
+
+    let productImg = document.createElement("img")
+    productImg.src = product.image
+
+    let title = document.createElement("p")
+    title.innerText = product.title
+
+    let price = document.createElement("p")
+    price.innerText = "INR : " + product.price
+
+    productCard.append(productImg, title, price)
+
+    main.append(productCard)
+  })
+}
+  </script>
+</html>

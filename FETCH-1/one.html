@@ -1,0 +1,29 @@
+import React, { useState } from 'react';
+
+const Counter = ({ initialValue }) => {
+  const [count, setCount] = useState(initialValue);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  const double = () => {
+    setCount(count * 2);
+  };
+
+  return (
+    <div>
+      <h2 data-testid="counter-header">Counter</h2>
+      <h3 data-testid="count">{count}</h3>
+      <button onClick={increment} data-testid="add-btn">+</button>
+      <button onClick={decrement} data-testid="subtract-btn">-</button>
+      <button onClick={double} data-testid="double-btn">Double</button>
+    </div>
+  );
+};
+
+export default Counter;
